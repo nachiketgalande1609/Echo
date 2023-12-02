@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5 mb-4">Account Information</h1>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="profile-image-container">
+                <img src="{{ user.profile_image_path }}" alt="Profile Image" class="img-fluid profile-image">
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">User Profile</h5>
+                    <p class="card-text">Username: {{ user.username }}</p>
+                    <p class="card-text">Email: {{ user.email }}</p>
+                    <!-- Add more user details here as needed -->
+                    <a href="{{ url_for('edit_account') }}" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

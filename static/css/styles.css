@@ -1,0 +1,161 @@
+/* Login and  Signup page */
+
+.login-card {
+    border: solid 1px #d9d9d9;
+    margin-top: 100px;
+    height: 500px;
+}
+
+.login-card .col-lg-6 {
+    padding: 0 5vw;
+}
+
+.login-card h2 {
+    color: #FFAC1C;
+}
+
+.container input:focus {
+    box-shadow: none;
+    border: solid 1px #FFAC1C;
+}
+
+.btn-primary {
+    background-color: #FFAC1C;
+    border: none;
+}
+.btn-primary:hover {
+    background-color:  rgb(232, 147, 0);
+}
+
+.btn-primary:focus {
+    box-shadow: none;
+    border: solid 1px #FFAC1C;
+    background-color: #fff;
+    color: #000;
+}
+
+.right-card {
+    color: #fff ;
+    background-color: #FFAC1C;
+}
+
+/* Account page */
+
+.profile-image-container {
+    width: 150px; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px; /* Add margin for spacing if required */
+}
+
+.profile-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Chat page */
+
+.message-container {
+    overflow-y: scroll;
+    padding: 15px 5px;
+    height: 70vh !important;
+}
+
+.room-header {
+    text-decoration: none;
+    color: #000;
+    font-size: 30px;
+}
+.room-header:hover {
+    color: #000;
+}
+
+#room-name-header {
+    padding: 20px;
+    border: #d9d9d9 solid 1px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#messages {
+    height: 400px;
+}
+
+.message-block {
+    display: flex;
+    align-items: center;
+}
+
+.message-block img {
+    margin: 5px;
+}
+
+.message-card {
+    max-width: fit-content;
+    border-radius: 10px;
+}
+
+#load_older_msg_btn {
+    text-decoration: none;
+    color: #000;
+}
+
+.card-footer {
+    background-color: #fff;
+    margin-top: 5px;
+    padding: 0;
+}
+
+#message_input_form {
+    margin: 0 !important;
+    width: 100%;
+}
+
+.messages {
+    border-radius: 10px;
+}
+
+/* Scroll Bar */
+
+/* For WebKit browsers (like Chrome, Safari) */
+/* You can adjust these properties to your liking */
+::-webkit-scrollbar {
+    width: 8px; /* width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* color of the scrollbar */
+    border-radius: 6px; /* roundness of the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* color of the scrollbar on hover */
+}
+
+.nav-link {
+    color: #fff;
+}
+.nav-link:hover {
+    color: #fff;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+iframe {
+    border: 1px solid #ededed;
+}
+
+/* Home Page */
+
+.room-cards {
+    border-radius: 10px;
+}

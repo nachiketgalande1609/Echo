@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row login-card">
+        <div class="col-lg-6 align-items-center" style="margin: auto;">
+            <h2 class="text-center mb-4">Edit Room</h2>
+            <h3 class="text-danger text-center mb-4">{{ message }}</h3>
+            <form method="POST">
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="room_name" id="room_name" placeholder="Room Name">
+                </div>
+                <div class="mb-3">
+                    <label for="members" class="form-label">Members:</label>
+                    <input type="text" class="form-control" name="members" id="members" value="{{ room_members_str }}">
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .login-card {
+    border: solid 1px #d9d9d9;
+    margin-top: 100px;
+    height: 500px;
+}
+
+.login-card .col-lg-6 {
+    padding: 0 5vw;
+}
+
+.login-card h2 {
+    color: #FFAC1C;
+}
+
+.container input:focus {
+    box-shadow: none;
+    border: solid 1px #FFAC1C;
+}
+
+.login-card button {
+    background-color: #FFAC1C;
+    border: none;
+}
+
+</style>
+
+{% endblock %}

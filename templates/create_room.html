@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row login-card">
+        <div class="col-lg-6 align-items-center" style="margin: auto;">
+            <h2 class="text-center mb-4">Create Room</h2>
+            <h3 class="text-danger text-center mb-4">{{ message }}</h3>
+            <form method="POST">
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" name="room_name" id="room_name" placeholder="Room Name">
+                </div>
+                <div class="form-group mb-3">
+                    <input type="text" class="form-control" name="members" id="members" placeholder="Members">
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
