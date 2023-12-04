@@ -15,9 +15,25 @@ login_manager.login_view = 'login'
 login_manager.init_app(app)
 
 # Home Page
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 @login_required
 def home():
+    # Create Room code
+    if request.method == 'POST':
+        message = ''
+        room_name = request.form.get('room_name')
+        usernames = [username.strip() for username in request.form.get('members').split(',')]
+        if len(room_name) and len(usernames):
+            room_id = database.save_room(room_name, current_user.username)
+            if current_user.username in usernames:
+                usernames.remove(current_user.username)
+            database.add_room_members(room_id, room_name, usernames, current_user.username)
+            return redirect(url_for('home'))
+        else:
+            message = 'Failed to create room'
+            return render_template('home.html', message=message)
+        
+    # Fetch rooms for user
     rooms = []
     if current_user.is_authenticated:
         rooms = database.get_rooms_for_user(current_user.username)
@@ -75,25 +91,7 @@ def edit_room(room_id):
         return render_template('edit_room.html', room_members_str=room_members_str, message=message)
     else:
         return "Room Not Found", 404    
-
-# Create Room
-@app.route('/create_room/', methods=['POST', 'GET'])
-@login_required
-def create_room():
-    message = ''
-    if request.method == 'POST':
-        room_name = request.form.get('room_name')
-        usernames = [username.strip() for username in request.form.get('members').split(',')]
-        if len(room_name) and len(usernames):
-            room_id = database.save_room(room_name, current_user.username)
-            if current_user.username in usernames:
-                usernames.remove(current_user.username)
-            database.add_room_members(room_id, room_name, usernames, current_user.username)
-            return redirect(url_for('view_room', room_id=room_id))
-        else:
-            message = 'Failed to create room'
-    return render_template('create_room.html', message=message)
-
+    
 # Signup
 @app.route('/signup/', methods=['GET','POST'])
 def signup():
@@ -193,5 +191,5 @@ def load_user(username):
 # #####################################################################################################
 
 if __name__=='__main__':
-    socketio.run(app, host='0.0.0.0', port=5000)
-    # socketio.run(app, debug=True)
+    # socketio.run(app, host='0.0.0.0', port=5000)
+    socketio.run(app, debug=True)

@@ -11,32 +11,32 @@
 }
 
 .login-card h2 {
-    color: #FFAC1C;
+    color: #B06161;
 }
 
 .container input:focus {
     box-shadow: none;
-    border: solid 1px #FFAC1C;
+    border: solid 1px #B06161;
 }
 
 .btn-primary {
-    background-color: #FFAC1C;
+    background-color: #B06161;
     border: none;
 }
 .btn-primary:hover {
-    background-color:  rgb(232, 147, 0);
+    background-color: #DC8686;
 }
 
 .btn-primary:focus {
     box-shadow: none;
-    border: solid 1px #FFAC1C;
-    background-color: #FFAC1C;
-    color: #000;
+    border: solid 1px #DC8686;
+    background-color: #DC8686;
+    color: #fff;
 }
 
 .right-card {
     color: #fff ;
-    background-color: #FFAC1C;
+    background-color: #DC8686;
 }
 
 /* Account page */
@@ -99,7 +99,13 @@
 
 .message-card {
     max-width: fit-content;
-    border-radius: 10px;
+    border-radius: 15px 15px 15px 0;
+    max-width: 70%;
+}
+.message-card-self {
+    max-width: fit-content;
+    border-radius: 15px 15px 0 15px;
+    max-width: 70%;
 }
 
 #load_older_msg_btn {
@@ -188,6 +194,7 @@ iframe {
     top: 0;
     width: 100%;
     z-index: 1;
+    background-color: rgb(243, 243, 243);
 }
 
 #message_input:focus {
@@ -205,4 +212,23 @@ iframe {
     iframe {
         display: none;
     }
+}
+
+#create-room-card {
+    border: 1px solid #d9d9d9;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.message-timestamp {
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+.message-card .message-timestamp {
+    text-align: right;
+}
+
+#messages .card-body {
+    padding: 5px 20px;
 }
