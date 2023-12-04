@@ -30,7 +30,7 @@
 .btn-primary:focus {
     box-shadow: none;
     border: solid 1px #FFAC1C;
-    background-color: #fff;
+    background-color: #FFAC1C;
     color: #000;
 }
 
@@ -59,9 +59,10 @@
 /* Chat page */
 
 .message-container {
-    overflow-y: scroll;
     padding: 15px 5px;
-    height: 70vh !important;
+    height: 100% !important;
+    padding-top: 50px;
+    padding-bottom: 40px;
 }
 
 .room-header {
@@ -74,10 +75,13 @@
 }
 
 #room-name-header {
+    margin-bottom: 0 !important;
     padding: 20px;
-    border: #d9d9d9 solid 1px;
-    border-radius: 10px;
-    margin-top: 10px;
+    border-bottom: #d9d9d9 solid 1px;
+}
+
+.load-messages {
+    border-bottom:  #d9d9d9 solid 1px !important;
 }
 
 #messages {
@@ -100,13 +104,24 @@
 
 #load_older_msg_btn {
     text-decoration: none;
-    color: #000;
+    color: #a5a5a5;
+}
+#load_older_msg_btn:hover {
+    color: #353535;
+}
+#load_older_msg_btn:focus {
+    box-shadow: none;
+    outline: none;
 }
 
 .card-footer {
     background-color: #fff;
     margin-top: 5px;
     padding: 0;
+    position: fixed;
+    bottom: 0;
+    border: none;
+    margin-bottom: 0;
 }
 
 #message_input_form {
@@ -115,7 +130,8 @@
 }
 
 .messages {
-    border-radius: 10px;
+    border: none;
+    padding: 0;
 }
 
 /* Scroll Bar */
@@ -141,6 +157,7 @@
 
 .nav-link {
     color: #fff;
+    padding: 8px 8px;
 }
 .nav-link:hover {
     color: #fff;
@@ -152,10 +169,40 @@
 
 iframe {
     border: 1px solid #ededed;
+    height: 70vh;
 }
 
 /* Home Page */
 
 .room-cards {
     border-radius: 10px;
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px #d9d9d9 solid;
+}
+
+#message-container-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+#message_input:focus {
+    box-shadow: none;
+    border-color: #989898;
+}
+
+#sendButton {
+    margin: 0;
+    border-radius: 0 5px 5px 0;
+    height: 100%;
+}
+
+@media (max-width: 767px) {
+    iframe {
+        display: none;
+    }
 }

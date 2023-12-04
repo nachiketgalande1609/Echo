@@ -1,49 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/styles.css">
 </head>
-<body>
 
-<div class="container message-page">
-    <div class="row">
-        <div class="col-md-12" id="message-zone">
-            <!-- Room Name Collapsible -->
-            <div class="d-flex justify-content-between align-items-center mb-3" id="room-name-header">
-                <a class="room-header" data-bs-toggle="collapse" href="#collapseExample" role="button"
-                    aria-expanded="false" aria-controls="collapseExample">
-                    {{ room.name }}
-                </a>
-                <a href="/rooms/{{ room._id }}/edit" class="btn btn-primary" style="width: 100px;">Edit Room</a>
+<body>
+    <div class="container-fluid message-page">
+        <!-- Sidebar -->
+        <div class="offcanvas offcanvas-start" style="max-width: 300px;" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+            aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div id="room-name-header" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                aria-expanded="false" aria-controls="collapseExample">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a class="room-header">
+                        {{ room.name }}
+                    </a>
+                    <a href="/rooms/{{ room._id }}/edit"><i class="bi bi-pencil-fill" style="color: #000;"></i></a>
+                </div>
+                <div class="text-center">
+                    <i class="bi bi-chevron-down"></i>
+                </div>
             </div>
             <div class="collapse mb-4 mt-2" id="collapseExample">
-                <div class="card card-body">
-                    <div class="card-header">
-                        <h5 class="card-title">Room Members</h5>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            {% for member in room_members %}
-                            <li class="list-group-item">{{ member._id.username }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title">Room Members</h5>
+                    <ul class="list-group">
+                        {% for member in room_members %}
+                        <li class="list-group-item">{{ member._id.username }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
-            <!--  -->
+        </div>
+        <!--  -->
 
-            <!-- Messages Card -->
+        <div class="row">
             <div class="card messages">
-                <div class="card-header d-flex justify-content-center">
-                    <button type="button" id="load_older_msg_btn" class="btn btn-link">Load older messages</button>
+                <div class="card-header" id="message-container-header">
+                    <div class="row">
+                        <a href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                            aria-controls="offcanvasWithBothOptions">
+                            <i class="bi bi-layout-sidebar-inset" style="color: #000;"></i>
+                        </a>
+                    </div>
                 </div>
+                <!--  -->
+
+                <!-- Message Box -->
                 <div class="card-body message-container" id="messages"> <!-- messagesDiv -->
+                    <div class="text-center">
+                        <button type="button" id="load_older_msg_btn" class="btn btn-link">Load older
+                            messages</button>
+                    </div>
                     {% for message in messages %}
                     {% if message.sender == username %}
                     <div class="d-flex justify-content-end message-block mb-3"> <!-- MessageBlock -->
@@ -75,6 +92,7 @@
                 </div>
             </div>
             <!--  -->
+
             <!-- Message input box -->
             <div class="card-footer">
                 <form id="message_input_form">
@@ -82,174 +100,173 @@
                         <input type="text" class="form-control" name="message" id="message_input"
                             placeholder="Enter your message here">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">Send</button>
+                            <button type="submit" class="btn btn-primary" id="sendButton"><i
+                                    class="bi bi-send-fill"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
-            <!--  -->
-
         </div>
     </div>
-</div>
 
-<!-- ------------------------------------------------------------------- -->
-<!-- ------------------------------SCRIPTS------------------------------ -->
-<!-- ------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------------------------- -->
+    <!-- ------------------------------SCRIPTS------------------------------ -->
+    <!-- ------------------------------------------------------------------- -->
 
-<!-- Socket script link -->
-<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"
-    integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous">
-    </script>
+    <!-- Socket script link -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"
+        integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous">
+        </script>
 
-<script>
-    // Establish a connection to the server via WebSocket using socket.io
-    const socket = io.connect("http://127.0.0.1:5000");
-    // const socket = io.connect("http://192.168.31.173:5000");
+    <script>
+        // Establish a connection to the server via WebSocket using socket.io
+        // const socket = io.connect("http://127.0.0.1:5000");
+        // const socket = io.connect("http://192.168.31.173:5000");
+        const socket = io.connect("/");
 
-    // On connect event
-    socket.on('connect', function () {
-        // Join Room event
-        socket.emit('join_room', {
-            username: "{{ username }}",
-            room: "{{ room._id }}"
-        })
+        // On connect event
+        socket.on('connect', function () {
+            // Join Room event
+            socket.emit('join_room', {
+                username: "{{ username }}",
+                room: "{{ room._id }}"
+            })
 
 
-        // Send message event
-        let messageInput = document.getElementById('message_input');
-        let messageForm = document.getElementById('message_input_form');
+            // Send message event
+            let messageInput = document.getElementById('message_input');
+            let messageForm = document.getElementById('message_input_form');
 
-        messageForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            let message = messageInput.value.trim();
-            if (message.length > 0) {
-                socket.emit('send_message', {
-                    username: "{{ username }}",
-                    room: "{{ room._id }}",
-                    message: message
-                });
-            }
-            messageInput.value = '';
-            messageInput.focus();
+            messageForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                let message = messageInput.value.trim();
+                if (message.length > 0) {
+                    socket.emit('send_message', {
+                        username: "{{ username }}",
+                        room: "{{ room._id }}",
+                        message: message
+                    });
+                }
+                messageInput.value = '';
+                messageInput.focus();
+            });
+
         });
 
-    });
-
-    // Leave Room event
-    window.onbeforeunload = function () {
-        socket.emit('leave_room', {
-            username: "{{ username }}",
-            room: "{{ room._id }}"
-        })
-    };
-
-    // Make a join room announcement
-    socket.on('join_room_announcement', function (data) {
-        const newNode = document.createElement('div');
-        newNode.innerHTML = `<div class="text-center"><b>${data.username}</b> has joined the room</div>`;
-        document.getElementById('messages').appendChild(newNode);
-    });
-
-    // Make a leave room announcement
-    socket.on('leave_room_announcement', function (data) {
-        const newNode = document.createElement('div');
-        newNode.innerHTML = `<div class="text-center"><b>${data.username}</b> left the room</div>`;
-        document.getElementById('messages').appendChild(newNode);
-    });
-
-    // Append message in the message container on receiving a message
-    socket.on('receive_message', function (data) {
-        const messagesDiv = document.getElementById('messages');
-        const messageBlock = document.createElement('div');
-        const messageCard = document.createElement('div');
-        const messageCardBody = document.createElement('div');
-        const messageTimestamp = document.createElement('div');
-        const profileImage = document.createElement('img');
-        profileImage.src = `../${data.profile_image_path}`;
-        profileImage.width = '50';
-        profileImage.height = '50';
-        profileImage.style.borderRadius = '25px';
-        profileImage.title = data.username;
-
-
-        messageCardBody.classList.add('card-body')
-        messageCardBody.innerHTML = `${data.message}`;
-        messageTimestamp.innerHTML = `<small>${data.created_at}</small>`;
-
-        messageCard.appendChild(messageCardBody);
-        messageCardBody.appendChild(messageTimestamp);
-        messageBlock.appendChild(messageCard)
-        messagesDiv.appendChild(messageBlock);
-
-        if (data.username === "{{ username }}") {
-            messageBlock.classList.add('d-flex', 'justify-content-end', 'message-block', 'mb-3')
-            messageCard.classList.add('card', 'message-card', 'bg-success', 'text-white')
-            messageBlock.appendChild(profileImage)
-        } else {
-            messageBlock.classList.add('d-flex', 'message-block', 'mb-3')
-            messageCard.classList.add('card', 'message-card', 'bg-light')
-            messageBlock.insertBefore(profileImage, messageBlock.firstChild);
-        }
-    });
-
-
-    // Load older messages on click of 'Load older messages' button
-    let page = 0
-    document.getElementById("load_older_msg_btn").onclick = (e) => {
-        page += 1;
-        fetch("/rooms/{{ room._id }}/messages?page=" + page, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            response.json().then(messages => {
-                messages.reverse().forEach(message => prepend_messages(message.text, message.sender, message.created_at, message.profile_image_path));
+        // Leave Room event
+        window.onbeforeunload = function () {
+            socket.emit('leave_room', {
+                username: "{{ username }}",
+                room: "{{ room._id }}"
             })
-        })
-    }
+        };
 
-    // Prepend the older messages in the message container
-    function prepend_messages(message, username, created_at, profile_image_path) {
-        console.log(message);
-        const messagesDiv = document.getElementById('messages');
-        const messageBlock = document.createElement('div');
-        const messageCard = document.createElement('div');
-        const messageCardBody = document.createElement('div');
-        const messageTimestamp = document.createElement('div');
-        const profileImage = document.createElement('img');
-        profileImage.src = `../${profile_image_path}`;
-        profileImage.width = '50';
-        profileImage.height = '50';
-        profileImage.style.borderRadius = '25px';
-        profileImage.title = username;
+        // Make a join room announcement
+        socket.on('join_room_announcement', function (data) {
+            const newNode = document.createElement('div');
+            newNode.innerHTML = `<div class="text-center"><b>${data.username}</b> has joined the room</div>`;
+            document.getElementById('messages').appendChild(newNode);
+        });
 
-        messageCardBody.classList.add('card-body');
-        messageCardBody.innerHTML = `${message}`;
-        messageTimestamp.innerHTML = `<small>${created_at}</small>`;
+        // Make a leave room announcement
+        socket.on('leave_room_announcement', function (data) {
+            const newNode = document.createElement('div');
+            newNode.innerHTML = `<div class="text-center"><b>${data.username}</b> left the room</div>`;
+            document.getElementById('messages').appendChild(newNode);
+        });
 
-        messageCard.appendChild(messageCardBody);
-        messageCardBody.appendChild(messageTimestamp);
-        messageBlock.appendChild(messageCard)
-        messagesDiv.appendChild(messageBlock);
+        // Append message in the message container on receiving a message
+        socket.on('receive_message', function (data) {
+            const messagesDiv = document.getElementById('messages');
+            const messageBlock = document.createElement('div');
+            const messageCard = document.createElement('div');
+            const messageCardBody = document.createElement('div');
+            const messageTimestamp = document.createElement('div');
+            const profileImage = document.createElement('img');
+            profileImage.src = `../${data.profile_image_path}`;
+            profileImage.width = '50';
+            profileImage.height = '50';
+            profileImage.style.borderRadius = '25px';
+            profileImage.title = data.username;
 
-        if (username === "{{ username }}") {
-            messageBlock.classList.add('d-flex', 'justify-content-end', 'message-block', 'mb-3')
-            messageCard.classList.add('card', 'message-card', 'bg-success', 'text-white')
-            messageBlock.appendChild(profileImage)
-        } else {
-            messageBlock.classList.add('d-flex', 'message-block', 'mb-3')
-            messageCard.classList.add('card', 'message-card', 'bg-light')
-            messageBlock.insertBefore(profileImage, messageBlock.firstChild);
+
+            messageCardBody.classList.add('card-body')
+            messageCardBody.innerHTML = `${data.message}`;
+            messageTimestamp.innerHTML = `<small>${data.created_at}</small>`;
+
+            messageCard.appendChild(messageCardBody);
+            messageCardBody.appendChild(messageTimestamp);
+            messageBlock.appendChild(messageCard)
+            messagesDiv.appendChild(messageBlock);
+
+            if (data.username === "{{ username }}") {
+                messageBlock.classList.add('d-flex', 'justify-content-end', 'message-block', 'mb-3')
+                messageCard.classList.add('card', 'message-card', 'bg-success', 'text-white')
+                messageBlock.appendChild(profileImage)
+            } else {
+                messageBlock.classList.add('d-flex', 'message-block', 'mb-3')
+                messageCard.classList.add('card', 'message-card', 'bg-light')
+                messageBlock.insertBefore(profileImage, messageBlock.firstChild);
+            }
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+
+        // Load older messages on click of 'Load older messages' button
+        let page = 0
+        document.getElementById("load_older_msg_btn").onclick = (e) => {
+            page += 1;
+            fetch("/rooms/{{ room._id }}/messages?page=" + page, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                response.json().then(messages => {
+                    messages.reverse().forEach(message => prepend_messages(message.text, message.sender, message.created_at, message.profile_image_path));
+                })
+            })
         }
 
-        messagesDiv.insertBefore(messageBlock, messagesDiv.firstChild);
-    };
+        // Prepend the older messages in the message container
+        function prepend_messages(message, username, created_at, profile_image_path) {
+            const messagesDiv = document.getElementById('messages');
+            const messageBlock = document.createElement('div');
+            const messageCard = document.createElement('div');
+            const messageCardBody = document.createElement('div');
+            const messageTimestamp = document.createElement('div');
+            const profileImage = document.createElement('img');
+            profileImage.src = `../${profile_image_path}`;
+            profileImage.width = '50';
+            profileImage.height = '50';
+            profileImage.style.borderRadius = '25px';
+            profileImage.title = username;
 
-</script>
-    
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            messageCardBody.classList.add('card-body');
+            messageCardBody.innerHTML = `${message}`;
+            messageTimestamp.innerHTML = `<small>${created_at}</small>`;
+
+            messageCard.appendChild(messageCardBody);
+            messageCardBody.appendChild(messageTimestamp);
+            messageBlock.appendChild(messageCard)
+            messagesDiv.appendChild(messageBlock);
+
+            if (username === "{{ username }}") {
+                messageBlock.classList.add('d-flex', 'justify-content-end', 'message-block', 'mb-3')
+                messageCard.classList.add('card', 'message-card', 'bg-success', 'text-white')
+                messageBlock.appendChild(profileImage)
+            } else {
+                messageBlock.classList.add('d-flex', 'message-block', 'mb-3')
+                messageCard.classList.add('card', 'message-card', 'bg-light')
+                messageBlock.insertBefore(profileImage, messageBlock.firstChild);
+            }
+
+            messagesDiv.insertBefore(messageBlock, messagesDiv.firstChild);
+        };
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
@@ -258,4 +275,5 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </body>
+
 </html>

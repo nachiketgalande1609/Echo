@@ -5,7 +5,7 @@
     <div class="row mb-4 mt-5">
         <div class="col-md-12 text-center">
             <h3>Start chatting with friends or create a new room!</h3>
-            <a href="/create_room" class="btn btn-primary">Create a Room</a>
+            <a href="/create_room" class="btn btn-primary mt-3">Create a Room</a>
         </div>
     </div>
     <div class="row justify-content-center">
@@ -15,7 +15,8 @@
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <h5 class="card-title">{{ room.room_name }}</h5>
                     <!-- <a href="/rooms/{{ room._id.room_id }}" class="btn btn-primary">Join Room</a> -->
-                    <button class="btn btn-primary join-room-btn" onclick="loadRoom(this, '{{ room._id.room_id }}')">Join Room</button>
+                    <button class="btn btn-primary join-room-btn" data-room-id="{{ room._id.room_id }}"
+                        onclick="loadRoom(this, '{{ room._id.room_id }}')">Join Room</button>
                 </div>
             </div>
             {% endfor %}
@@ -33,12 +34,31 @@
                 btn.innerText = 'Join Room';
             }
         });
-
-        // Raise an alert
-        // Change the clicked button text to 'Room Joined'
-        button.innerText = 'Room Joined';        const iframe = document.getElementById('roomIframe');
+        button.innerText = 'Room Joined';
+        const iframe = document.getElementById('roomIframe');
         iframe.src = `/rooms/${roomId}`;
     }
+
+    function isMobileDevice() {
+        return window.innerWidth <= 767;
+    }
+    // Modify button behavior based on device width
+    function modifyButtonBehavior() {
+        const buttons = document.querySelectorAll('.join-room-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function (event) {
+                if (isMobileDevice()) {
+                    event.preventDefault();
+                    const roomId = this.getAttribute('data-room-id');
+                    window.location.href = `/rooms/${roomId}`;
+                }
+            });
+        });
+    }
+
+    // Call the function when the document is loaded
+    document.addEventListener('DOMContentLoaded', modifyButtonBehavior);
+
 </script>
 
 {% endblock %}
