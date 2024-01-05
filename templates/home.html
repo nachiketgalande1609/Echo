@@ -16,9 +16,18 @@
                     <div class="form-group mb-3">
                         <input type="text" class="form-control" name="room_name" id="room_name" placeholder="Room Name">
                     </div>
-                    <div class="form-group mb-3">
+
+                    <!-- <div class="form-group mb-3">
                         <input type="text" class="form-control" name="members" id="members" placeholder="Members">
+                    </div> -->
+
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" name="members" id="membersInput" placeholder="Search for members">
+                        <select class="form-control" id="membersDropdown" style="display: none;" size="5" multiple>
+                            <!-- Options will be dynamically populated using JavaScript -->
+                        </select>
                     </div>
+
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">Create</button>
                     </div>
@@ -75,6 +84,91 @@
     // Call the function when the document is loaded
     document.addEventListener('DOMContentLoaded', modifyButtonBehavior);
 
+</script>
+
+<!-- <script>
+    const membersInput = document.getElementById('membersInput');
+    const membersDropdown = document.getElementById('membersDropdown');
+
+    membersInput.addEventListener('input', function() {
+        const query = this.value.trim(); // Get the typed query
+        if (query.length > 0) {
+            fetch(`/search_users?q=${query}`) // Modify the route according to your Flask route for searching users
+                .then(response => response.json())
+                .then(users => {
+                    // Clear previous options
+                    membersDropdown.innerHTML = '';
+                    users.forEach(user => {
+                        const option = document.createElement('option');
+                        option.value = user._id; // Set the value to user ID or any unique identifier
+                        option.textContent = user._id; // Replace with the user field you want to display
+                        membersDropdown.appendChild(option);
+                    });
+                    // Show the dropdown
+                    membersDropdown.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error fetching users:', error);
+                });
+        } else {
+            // Hide the dropdown if query is empty
+            membersDropdown.style.display = 'none';
+        }
+    });
+
+    membersDropdown.addEventListener('change', function() {
+        // Get all selected options
+        const selectedOptions = [...this.selectedOptions];
+        // Get the text content of selected options
+        const selectedUsernames = selectedOptions.map(option => option.textContent);
+        // Set the input field value to the selected usernames (join multiple selections with a comma or as required)
+        membersInput.value = selectedUsernames.join(', ');
+        // Don't hide the dropdown after selection to allow multiple selections
+    });
+</script> -->
+
+<script>
+    const membersInput = document.getElementById('membersInput');
+    const membersDropdown = document.getElementById('membersDropdown');
+
+    let selectedUsernames = []; // Array to store selected usernames
+
+    membersInput.addEventListener('input', function() {
+        const query = this.value.trim(); // Get the typed query
+        if (query.length > 0) {
+            fetch(`/search_users?q=${query}`) // Modify the route according to your Flask route for searching users
+                .then(response => response.json())
+                .then(users => {
+                    // Clear previous options
+                    membersDropdown.innerHTML = '';
+                    users.forEach(user => {
+                        const option = document.createElement('option');
+                        option.value = user._id; // Set the value to user ID or any unique identifier
+                        option.textContent = user._id; // Replace with the user field you want to display
+                        membersDropdown.appendChild(option);
+                    });
+                    // Show the dropdown
+                    membersDropdown.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error fetching users:', error);
+                });
+        } else {
+            // Hide the dropdown if query is empty
+            membersDropdown.style.display = 'none';
+        }
+    });
+
+    membersDropdown.addEventListener('change', function() {
+        const selectedOptions = [...this.selectedOptions];
+        selectedUsernames = selectedOptions.map(option => option.textContent);
+        updateInputField();
+    });
+
+    function updateInputField() {
+        // Set the input field value to the selected usernames (join multiple selections with a comma or as required)
+        membersInput.value = selectedUsernames.join(', ');
+    }
 </script>
 
 {% endblock %}

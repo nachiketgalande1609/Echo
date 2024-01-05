@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    body {
+        background-image: url("../static/images/bg.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .login-card {
+        background-color: rgba(122, 122, 122, 0.5);
+        backdrop-filter: blur(15px);
+    }
+</style>
 <div class="container">
     <div class="row login-card">
         <div class="col-lg-6 align-items-center" style="margin: auto;">
@@ -11,8 +25,8 @@
                         required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="form-control" name="password" id="password"
-                        placeholder="Password" required>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                        required>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">Login</button>
@@ -29,5 +43,3 @@
     </div>
 </div>
 {% endblock %}\
-
-

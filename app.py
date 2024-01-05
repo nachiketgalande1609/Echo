@@ -1,7 +1,7 @@
 from datetime import datetime
 from bson.json_util import dumps
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_socketio import SocketIO, join_room, leave_room
 import database
 from werkzeug.utils import secure_filename
@@ -14,8 +14,12 @@ login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
 
+@app.route('/')
+def landing_page():
+    return render_template('landing_page.html')
+
 # Home Page
-@app.route('/', methods=['GET','POST'])
+@app.route('/home/', methods=['GET','POST'])
 @login_required
 def home():
     # Create Room code
@@ -35,12 +39,8 @@ def home():
         
     # Fetch rooms for user
     rooms = []
-    if current_user.is_authenticated:
-        rooms = database.get_rooms_for_user(current_user.username)
-        for room in rooms:
-            print(room['_id']['room_id'])
-        return render_template('home.html', rooms=rooms)
-    return render_template('home.html')
+    rooms = database.get_rooms_for_user(current_user.username)
+    return render_template('home.html', rooms=rooms)
 
 # Chat Page
 @app.route('/rooms/<room_id>')
@@ -88,10 +88,22 @@ def edit_room(room_id):
                 database.remove_room_members(room_id, members_to_remove)
             room_members_str = ",".join(new_members)
             return redirect(url_for('view_room', room_id=room_id))
-        return render_template('edit_room.html', room_members_str=room_members_str, message=message)
+        return render_template('edit_room.html', room_members_str=room_members_str, message=message, room_id=room_id)
     else:
         return "Room Not Found", 404    
     
+@app.route('/delete_room/<room_id>', methods=['GET', 'POST'])
+@login_required
+def delete_room(room_id):
+    database.delete_room(room_id)
+    return render_template('home.html')    
+
+@app.route('/search_users')
+def search_users():
+    query = request.args.get('q')  # Get the typed query from the request
+    users = database.search_users(query)
+    return jsonify(users)
+
 # Signup
 @app.route('/signup/', methods=['GET','POST'])
 def signup():
@@ -121,7 +133,6 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password_input = request.form.get('password')
-        print(username)
         user = database.get_user(username)
         if user and user.verify_password(password_input):
             login_user(user)
@@ -135,7 +146,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('landing_page'))
 
 # Account Page
 @app.route('/account')
