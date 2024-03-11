@@ -1,23 +1,11 @@
 
+
 <a  name="readme-top"></a>
 
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-  
-
-<br  />
-
-<div  align="center">
-
 <a  href="https://github.com/nachiketgalande1609/urban">
-
-<img  src="https://github.com/nachiketgalande1609/urban/blob/main/static/images/logo1.png?raw=true"  alt="Logo"  height="80">
-
-</a>
-
-<p  align="center">
-
-<br  />
+<h1 align="center">Echo</h1>
 
 <a  href="https://github.com/nachiketgalande1609/urban"><strong>Explore the docs »</strong></a>
 
@@ -35,94 +23,31 @@
 
 </div>
 
-  
-  
-  
-
-<!-- TABLE OF CONTENTS -->
-
-<details>
-
-<summary>Table of Contents</summary>
-
-<ol>
-
-<li>
-
-<a href="#about-the-project">About The Project</a>
-
-<ul>
-
-<li><a href="#built-with">Built With</a></li>
-
-</ul>
-
-</li>
-
-<li>
-
-<a href="#getting-started">Getting Started</a>
-
-<ul>
-
-<li><a href="#prerequisites">Prerequisites</a></li>
-
-<li><a href="#installation">Installation</a></li>
-
-</ul>
-
-</li>
-
-<li><a href="#usage">Usage</a></li>
-
-<li><a href="#roadmap">Roadmap</a></li>
-
-<li><a href="#contributing">Contributing</a></li>
-
-<li><a href="#license">License</a></li>
-
-<li><a href="#contact">Contact</a></li>
-
-<li><a href="#acknowledgments">Acknowledgments</a></li>
-
-</ol>
-
-</details>
-
-
-
 ## About The Project
 
 <div  align="center">
 
-<img  src="https://github.com/nachiketgalande1609/urban/blob/main/screenshots/download.png?raw=true"  alt="Logo">
+<img  src="https://github.com/nachiketgalande1609/Echo/blob/main/screenshots/Chat.png?raw=true">
 
 </div>
 
-Welcome to URBAN, a robust Flask-based e-commerce platform designed to streamline various functionalities for online shopping. This project aims to provide a comprehensive solution for user management, product cataloging, shopping cart operations, wishlists, and administrative capabilities.
+Welcome to Echo, a powerful Flask-based real-time chat application designed to facilitate instant messaging and collaboration. The project is built with Flask, Flask-SocketIO, MongoDB, and other technologies to deliver seamless communication in a user-friendly interface.
 
 #### Why This Project?
 
-Urban serves as a catalyst for building dynamic e-commerce platforms, empowering developers to create engaging, feature-rich websites efficiently.
-
--   **Accelerated Development**: Jumpstart your e-commerce website with a robust foundation, saving significant development time.
--   **Focus on Core Functionalities**: By leveraging this template, concentrate on implementing unique features and user experiences, rather than building fundamental functionalities.
--   **Scalability and Customization**: Begin with a sturdy architecture that allows easy scalability and customization to suit diverse business needs.
--   **Enhanced User Experience**: Prioritize refining user interfaces, optimizing user journeys, and enriching customer experiences without the burden of foundational code.
-This template might not fit every project's unique needs, but it's crafted to be versatile. I'll continually enhance it and welcome your contributions via pull requests or issues to make it even better. Thanks to everyone contributing to expanding this template's capabilities!
+Echo aims to provide a robust foundation for building real-time chat applications, allowing developers to focus on enhancing user experiences rather than dealing with the intricacies of messaging functionality. 
+-  **Accelerated Development:** Jumpstart your chat application development with a solid foundation.
+-  **Focus on User Experience:** Concentrate on building engaging features and interfaces.
+-  **Scalability and Customization:** Begin with a sturdy architecture for easy scalability and customization.
+-  **Community Contributions:** Continuously improve the template with contributions from the community.
 
 ### Built With
 
+The Echo project leverages essential technologies to deliver real-time chat capabilities:
 
-The Urban project provides a template built using essential technologies, empowering developers to craft dynamic e-commerce websites with ease:
+[![Python][Python]][Python-url] [![Bootstrap][Bootstrap.com]][Bootstrap-url] [![JQuery][JQuery.com]][JQuery-url] [![Flask][Flask]][Flask-url] [![MongoDB][MongoDB]][MongoDB-url]
 
-[![Python][Python]][Python-url] [![Bootstrap][Bootstrap.com]][Bootstrap-url] [![JQuery][JQuery.com]][JQuery-url] [![Flask][Flask]][Flask-url] [![MongoDB][MongoDB]][MongoDB-url] [![Flask-Paginate][Flask-Paginate]][Flask-Paginate-url] [![dotenv][dotenv]][dotenv-url]
-
-Customize and expand upon this template to create an engaging online shopping experience tailored to your audience.
-
-# URBAN
-
-  
+# ECHO
 
 <!-- Project Description -->
 
@@ -174,7 +99,7 @@ _Below is an example of how you can instruct your audience on installing and set
 
 ```sh
 
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/nachiketgalande1609/Echo
 
 ```
 
@@ -212,29 +137,24 @@ Explore the various functionalities of the application:
 
 **Home Page**
 
-<img src='https://github.com/nachiketgalande1609/urban/blob/main/screenshots/download.png?raw=true'>
+<img src='https://github.com/nachiketgalande1609/Echo/blob/main/screenshots/Home.png?raw=true'>
 
-**Product Details Page**
+**Login Page**
 
-<img src='https://github.com/nachiketgalande1609/urban/blob/main/screenshots/download%20(1).png?raw=true'>
+<img src='https://github.com/nachiketgalande1609/Echo/blob/main/screenshots/Login.png?raw=true'>
 
 **Cart**
 
 <img src='https://github.com/nachiketgalande1609/urban/blob/main/screenshots/download%20(2).png?raw=true'>
 
-**Account Page**
+**Chat Page**
 
-<img src='https://github.com/nachiketgalande1609/urban/blob/main/screenshots/download%20(3).png?raw=true'>
-
-**Admin Dashboard**
-
-<img src='https://github.com/nachiketgalande1609/urban/blob/main/screenshots/download%20(4).png?raw=true'>
+<img src='https://github.com/nachiketgalande1609/Echo/blob/main/screenshots/Chat.png?raw=true'>
 
 <!-- ROADMAP -->
 
 ## Roadmap
 
-  
 
 - [ ] Add Changelog
 
