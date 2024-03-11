@@ -7,18 +7,6 @@
 <a  href="https://github.com/nachiketgalande1609/urban">
 <h1 align="center">Echo</h1>
 
-<a  href="https://github.com/nachiketgalande1609/urban"><strong>Explore the docs »</strong></a>
-
-<br />
-
-<a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-
-
-<a href="https://github.com/nachiketgalande1609/urban/issues">Report Bug</a>
-
-
-<a href="https://github.com/nachiketgalande1609/urban/issues">Request Feature</a>
-
 </p>
 
 </div>
@@ -51,7 +39,7 @@ The Echo project leverages essential technologies to deliver real-time chat capa
 
 <!-- Project Description -->
 
-An extensive Flask-based web application providing user authentication, product management, shopping cart functionality, wishlists, and admin features.
+Echo is a real-time chat application built using Flask, Flask-SocketIO and MongoDB. It allows users to create chat rooms, engage in real-time messaging, and manage their account details.
 
 <!-- Introduction -->
 
@@ -59,29 +47,29 @@ An extensive Flask-based web application providing user authentication, product 
 
   
 
-Welcome to Urban! This Flask-based application is designed to handle various e-commerce functionalities, including user management, product handling, and order processing.
-
+Welcome to Echo, a comprehensive Flask-based real-time chat application designed to facilitate seamless communication and collaboration. The project is built to provide users with an intuitive and responsive platform for instant messaging and group discussions.
   
 
 <!-- Features -->
 
+
 ## Features
 
-  
-
-- **User Authentication:** Secure user login/logout and session management.
-
-- **Product Management:** CRUD operations for products, including image upload and categorization.
-
-- **Shopping Cart:** Add/remove products, manage quantities, and proceed to checkout.
-
-- **Wishlist Functionality:** Create, view, and manage wishlists of desired products.
-
-- **Admin Access:** Admin-only sections for managing users, products, and orders.
-
-- **Invoice Generation:** Generate and download invoices for orders.
-
-- **Pagination & Sorting:** Paginate product listings and implement sorting by price or category.
+-   **Real-Time Messaging:** Engage in real-time conversations with other users within dedicated chat rooms.
+    
+-   **Room Creation and Joining:** Create new chat rooms or join existing ones to collaborate with specific groups of users.
+    
+-   **User Authentication:** Ensure secure user authentication with secure login/logout functionality and session management.
+    
+-   **Room Management:** Administer chat rooms by editing details, adding or removing members, and customizing settings.
+    
+-   **Message History:** View and retrieve older messages to maintain a complete conversation history within chat rooms.
+    
+-   **Profile Customization:** Personalize your chat experience by uploading a profile picture and updating account details.
+    
+-   **Search Users:** Easily find other users within the application based on their usernames.
+    
+-   **Scalable Architecture:** Built on Flask and Flask-SocketIO, Echo provides a scalable foundation for real-time communication.
 
 
 <!-- GETTING STARTED -->
@@ -126,12 +114,20 @@ python app.py
 
 ## Usage
 
-Explore the various functionalities of the application:
+Explore the various features of Echo to enhance your real-time chat experience:
 
--   **Login/Register:** Create an account or log in using existing credentials.
--   **Product Management:** Add, edit, or remove products via the admin section.
--   **Shopping Cart & Wishlist:** Interact with the cart and wishlist functionalities.
--   **Order Processing:** Complete a purchase and generate/download invoices.
+1.  **Login/Register:** Create an account or log in using existing credentials to access the chat platform.
+    
+2.  **Room Creation/Joining:** Start new chat rooms or join existing ones to collaborate with specific groups of users.
+    
+3.  **Real-Time Messaging:** Engage in conversations with other users in real-time, enhancing communication and collaboration.
+    
+4.  **Room Management:** Administer chat rooms by editing details, adding or removing members, and customizing settings.
+    
+5.  **Profile Customization:** Personalize your chat experience by uploading a profile picture and updating account details.
+    
+
+Echo is a versatile platform that can be customized and expanded upon to create a dynamic and engaging real-time chat application tailored to your specific needs. We welcome contributions and feedback from the community to continuously improve and evolve Echo. Thank you for being part of this exciting project!
 
 ## Screenshots
 
@@ -143,61 +139,11 @@ Explore the various functionalities of the application:
 
 <img src='https://github.com/nachiketgalande1609/Echo/blob/main/screenshots/Login.png?raw=true'>
 
-**Cart**
-
-<img src='https://github.com/nachiketgalande1609/urban/blob/main/screenshots/download%20(2).png?raw=true'>
-
 **Chat Page**
 
 <img src='https://github.com/nachiketgalande1609/Echo/blob/main/screenshots/Chat.png?raw=true'>
 
-<!-- ROADMAP -->
-
-## Roadmap
-
-
-- [ ] Add Changelog
-
-- [ ] Add back to top links
-
-- [ ] Add Additional Templates w/ Examples
-
-- [ ] Add "components" document to easily copy & paste sections of the readme
-
-- [ ] Multi-language Support
-
-- [ ] Chinese
-
-- [ ] Spanish
-
-  
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-  
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-  
-  
-<!-- CONTRIBUTING -->
-
-## Contributing
-
-  
-We welcome contributions! To contribute to this project:
-
-1.  **Fork the repository.**
-2.  **Create a new branch (`git checkout -b feature/AmazingFeature`).**
-3.  **Commit your changes (`git commit -m 'Add some AmazingFeature'`).**
-4.  **Push to the branch (`git push origin feature/AmazingFeature`).**
-5.  **Open a pull request.**
-
-<!-- LICENSE -->
-
-## License
-
-Distributed under the [MIT License](https://chat.openai.com/c/LICENSE). See `LICENSE` for more information.  
 
 <!-- CONTACT -->
 
@@ -205,30 +151,15 @@ Distributed under the [MIT License](https://chat.openai.com/c/LICENSE). See `LIC
 
   
 
-Nachiket- [@your_twitter](https://twitter.com/your_username) - email@example.com
+Nachiket- nachiketgalande1609@gmail.com
 
   
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/nachiketgalande1609/Echo](https://github.com/nachiketgalande1609/Echo)
 
   
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-  
-  
-  
-
-<!-- ACKNOWLEDGMENTS -->
-
-## Acknowledgments
-
--   [Flask](https://flask.palletsprojects.com/)
--   [MongoDB](https://www.mongodb.com/)
--   [Flask-Paginate](https://pythonhosted.org/Flask-paginate/)
--   [dotenv](https://github.com/theskumar/python-dotenv)
-  
-  
+<p align="right">(<a href="#readme-top">back to top</a>)</p> 
   
 
 <!-- MARKDOWN LINKS & IMAGES -->
