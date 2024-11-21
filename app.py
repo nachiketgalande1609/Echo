@@ -133,7 +133,9 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password_input = request.form.get('password')
+
         user = database.get_user(username)
+        print(user)
         if user and user.verify_password(password_input):
             login_user(user)
             return redirect(url_for('home'))
@@ -202,5 +204,5 @@ def load_user(username):
 # #####################################################################################################
 
 if __name__=='__main__':
-    # socketio.run(app, host='0.0.0.0', port=5000)
-    socketio.run(app, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000)
+    # socketio.run(app, debug=True)
