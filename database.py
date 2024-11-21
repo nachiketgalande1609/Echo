@@ -6,7 +6,9 @@ from datetime import datetime
 from bson import ObjectId
 import re
 
-client=MongoClient("mongodb://localhost:27017/")
+# client=MongoClient("mongodb://localhost:27017/")
+client=MongoClient("mongodb+srv://nachiketgalande:root@echo.mv9lq.mongodb.net/")
+
 db = client.echo
 
 # Save user details on signup
